@@ -23,8 +23,9 @@ class FunctionAccelerometer{
         }
       };
    });
-   
+
    return _accelerometerStream.stream;
+   
   }
 
   void dispose(){
