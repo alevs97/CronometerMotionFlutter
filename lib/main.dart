@@ -27,15 +27,9 @@ class MyApp extends StatelessWidget {
 
 // ignore_for_file: public_member_api_docs
 
-import 'dart:async';
-import 'package:acelerometer/functions/accelerometer_function.dart';
-import 'package:acelerometer/src/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sensors_plus/sensors_plus.dart';
 
-import 'functions/motion.dart';
-import 'functions/motion_test.dart';
+import 'src/motion_test.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MotionTest(),
+      home: HomePage(),
     );
   }
 }
