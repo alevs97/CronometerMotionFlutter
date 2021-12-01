@@ -1,11 +1,13 @@
+
 import 'dart:async';
 
 import 'package:acelerometer/entities/singleton_cronometer.dart';
-import 'package:intl/intl.dart';
+import 'package:acelerometer/functions/write_file_cache.dart';
 
 class CheckSensor{
 
   SingletonCronometer sinCronometer = SingletonCronometer();
+  WriteFileCache writeFileCache = WriteFileCache();
 
   bool isUserWorking(List<double> listSensor){
     bool stateX = false;
@@ -34,11 +36,21 @@ class CheckSensor{
 
         return isWorking;
       }else{
-        isWorking =  false;
-        print("You are working");
 
+        isWorking =  false;
+        
+        print("You are working");
+        
         if(sinCronometer.isRunning){
           sinCronometer.stop();
+          writeFileCache.writeProgressCache(sinCronometer.getInactiveTime);
+          writeFileCache.readCacheFile().then((value){
+            
+            final newValue = value.toSet();
+            print("Informacion cache");  
+            print(newValue);
+          
+          });
         }
 
         return isWorking;

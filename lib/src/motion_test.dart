@@ -1,7 +1,6 @@
 import 'package:acelerometer/functions/function_accelerometer.dart';
 import 'package:acelerometer/entities/singleton_cronometer.dart';
 import 'package:acelerometer/functions/check_sensor.dart';
-import 'package:acelerometer/entities/cronometer.dart';
 import 'package:flutter/material.dart';
 
 
@@ -67,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                   return Text(snapshot.data.toString() + '  inative time');
                 }
               ),
+
             ],
           );
         },

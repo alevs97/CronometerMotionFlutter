@@ -1,4 +1,4 @@
-import 'package:acelerometer/functions/entities/cronometer.dart';
+import 'package:acelerometer/entities/cronometer.dart';
 
 class SingletonCronometer extends Chronometer{
 

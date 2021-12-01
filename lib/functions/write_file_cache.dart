@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class WriteFileCache{
@@ -13,34 +14,43 @@ class WriteFileCache{
   /// Create the reference to file
   Future<File> get _cacheFile async{
     final cachePath = await _cacheDirectory;
-    print('progre Path del cache : $cachePath');
-    return File('$cachePath/ }.txt');
+    print('cache path : $cachePath');
+    return File('$cachePath/accelerometer_data.txt');
   }
 
-  Future<void> _deleteFileCache() async{
+  Future<void> deleteFileCache() async{
     final file =await _cacheFile;
     await file.delete();
   }
 
   /// Write in the archieve
-  Future<File?> _writeProgressCache(String progress) async{
+  Future<File?> writeProgressCache(String progress) async{
     final file = await _cacheFile;
+    final dataNow = _getCurrentlyDate();
+
     print('progre -- File ${file.path}');
     print('progre -- progreso a guardar -> $progress');
     if(progress != Null){
-      return file.writeAsString(progress);
+
+      String record = dataNow + " - " + progress;
+      return file.writeAsString(record, mode: FileMode.writeOnlyAppend);
     }
   }
 
   /// Read file
-  Future<String> _readCacheFile() async {
+  Future<List<String>> readCacheFile() async {
     try{
       final file = await _cacheFile;
-      String progressInfo = await file.readAsString();
+      List<String> progressInfo = await file.readAsLines();
       return progressInfo;
     }catch(e){
-      return '0';
+      return [];
     }
   } 
+
+  String _getCurrentlyDate(){
+    final currentlyDate = DateFormat("yyyy/MMM/d hh:mm").format(DateTime.now());
+    return currentlyDate;
+  }
 
 }

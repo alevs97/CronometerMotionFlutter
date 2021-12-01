@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:provider/provider.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 class FunctionAccelerometer{
