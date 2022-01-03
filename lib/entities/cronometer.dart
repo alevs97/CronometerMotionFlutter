@@ -28,7 +28,6 @@ class Chronometer{
     _isRunning =true;
     
     Timer(Duration(seconds: 20),(){
-
     _startDateTime = DateTime.now();
     _stateStreamController.sink.add(true);
       
@@ -45,14 +44,10 @@ class Chronometer{
       
       });
     });
-
-
   }
 
   void stop(){
     _isRunning = false;
     _stateStreamController.sink.add(false);
   }
-
-
 }
